@@ -14,22 +14,22 @@ const Home: FC = () => {
 		{ name: 'hossein', value: 3 },
 	];
 	return (
-		<main className={`${styles.page} container`}>
+		<main className={styles.page}>
 			<Helmet>
-				<title>Home page </title>
+				<title>ثبت نام</title>
 			</Helmet>
 			<div className={styles.info}>
 				<h1>Bimito</h1>
 			</div>
 			<Button
-				type='outlined'
+				variant='outlined'
 				iconPosition='left'
 				icon={<img src={arrow} style={{ height: 10 }} alt='' />}
 			>
 				بیمیتو
 			</Button>
 
-			<Button type='contained'>بیمیتو</Button>
+			<Button variant='contained'>بیمیتو</Button>
 
 			<TextField value={state} onChange={(e) => setState(e.target.value)} label='نام' />
 

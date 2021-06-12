@@ -4,21 +4,17 @@ import styles from './index.styl';
 const Button: FC<any> = ({
 	children,
 	className = '',
-	type,
+	variant,
 	onClick,
 	icon,
 	iconPosition = 'right',
 	disabled = false,
-	nativeType = 'button',
-	htmlTag: HtmlTag = 'button',
-	htmlFor,
 }) => {
 	return (
-		<HtmlTag
-			htmlFor={htmlFor}
-			type={nativeType}
+		<button
+			type='button'
 			className={`${styles.button}  ${className || ''} ${disabled && styles.disabled} ${
-				styles[type]
+				styles[variant]
 			}`}
 			onClick={onClick}
 			disabled={disabled}
@@ -26,7 +22,7 @@ const Button: FC<any> = ({
 			{iconPosition === 'right' && icon && <i className={styles.icon}>{icon}</i>}
 			<span>{children}</span>
 			{iconPosition === 'left' && icon && <i className={styles.afterIcon}>{icon}</i>}
-		</HtmlTag>
+		</button>
 	);
 };
 
