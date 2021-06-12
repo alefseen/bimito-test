@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+				"lib": [
+					"dom",
+					"dom.iterable",
+					"esnext"
+				],
+		"esModuleInterop": true,
+		"target": "es5",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"outDir": "build",
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "src",
+		"downlevelIteration": true,
+		"jsx": "react-jsx",
+	},
+	"include": [
+		"./**/*",
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+	]
+}

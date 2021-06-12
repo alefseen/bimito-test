@@ -1,0 +1,68 @@
+@import 'resets.styl'
+@import 'fonts.styl'
+@import 'typography.styl'
+
+html
+	height 100%
+body
+	height 100%
+	width: 100%
+	position: relative
+	overflow-x: hidden
+	margin: 0
+	padding: 0
+	display: flex
+	flex-direction: column
+	font-family: baseFont
+	font-variation-settings:"wght" baseFontWeight
+	font-size: baseFontSize
+	font-style: baseFontStyle
+	background: gray12
+	color: gray2
+	line-height: 1.8
+	direction: rtl
+
+:global(#root)
+	display: flex
+	flex-direction: column
+	flex-grow: 1
+	align-items: stretch
+	
+:global(.container)
+	width: 1400px
+	margin: 0 auto;
+	box-sizing: border-box
+
+@media only screen and (max-width: 1500px) and (min-width: 1300px)
+	:global(.container)
+		width: 1200px
+
+
+@media only screen and (max-width: 1300px)
+	:global(.container)
+		width: 100%
+		padding: 0 30px
+
+
+@media only screen and (max-width: 640px)
+	:global(.container)
+		padding: 0 20px
+
+	body
+		font-size: baseFontSize * 0.85
+
+@media only screen and (max-width: 420px)
+	:global(.container)
+		padding: 0 15px
+
+@media only screen and (max-width: 350px)
+	:global(.container)
+		padding: 0 5px
+
+
+.layout
+	display flex
+	flex-direction: column
+
+	>main
+		flex-grow 1

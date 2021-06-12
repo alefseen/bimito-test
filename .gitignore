@@ -1,0 +1,28 @@
+# dependencies
+/node_modules
+
+# production
+dist
+build
+
+# misc
+.DS_Store
+.idea
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+stats.json
+
+# local env files
+.env
+.env.dev
+
+# cypress
+/lib/cypress/videos
+/lib/cypress/screenshots
+
+# webpack stats file
+stats.json
