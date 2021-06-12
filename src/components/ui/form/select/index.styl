@@ -1,0 +1,123 @@
+.selectContainer
+	position: relative
+	display: flex
+	flex-direction: column
+
+	button
+		outline: none
+		background none
+		font inherit
+		border none
+		appearance none
+
+	.button
+		padding: 0 10px
+		flex-grow: 1
+		border 2px solid gray8
+		fill gray5
+		color gray5
+		justify-content: space-between
+		display: flex
+		align-items: center
+		height: 46px
+		border-radius 5px
+		cursor pointer
+		transition .3s
+
+		&[disabled]
+			pointer-events none
+			fill gray7
+			color gray7
+			border-color gray10
+
+		.value
+			color gray2
+
+		&.active
+			fill secondaryColor
+			border-color secondaryColor
+			color gray4
+
+		&.haveError
+			border-color primaryColor
+			border-bottom-right-radius 0
+
+		.icon 
+			display flex
+			justify-content center
+			align-items center
+
+			img
+				width: 15px
+				height: 15px
+
+
+	.list
+		display: flex
+		flex-direction: column
+		position: absolute
+		bottom: -5px
+		right: 0
+		left: 0
+		transform translateY(100%)
+		border-radius: 5px;
+		box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08);
+		background-color: gray12
+		padding: 10px 20px
+		z-index 3
+		pointer-events none
+		opacity 0
+		transition .2s
+		max-height: 300px
+		overflow-x: hidden
+
+		&.active
+			pointer-events all
+			opacity 1
+
+		>li
+			display: flex
+			flex-direction: column-reverse
+
+			&:not(:last-child)
+				margin-bottom 5px
+
+				&:after
+					content ''
+					position absolute
+					left 0
+					right 0
+					height 1px
+					background: gray10
+			
+
+			>button
+				text-align: right
+				padding: 5px 0
+				cursor pointer
+				font-variation-settings "wght" 300
+				font-size .9em
+
+
+
+	.error
+		font-size: 14px
+		border-radius: 12px
+		min-width: 150px
+		max-width 90%
+		height: 0px
+		padding: 0 20px
+		color: gray11
+		background: primaryColor
+		width: fit-content
+		border-top-right-radius: 0
+		border-top-left-radius: 0
+		transition height .3s,padding 0.3s
+		transition-delay: 0
+		overflow hidden
+		box-sizing: border-box
+
+		&.hasError
+			height: 30px
+			padding: 2px 20px
+			transition-delay: .3s

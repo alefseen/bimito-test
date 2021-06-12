@@ -17,7 +17,7 @@ const Header: FC = () => {
 					<h1>سامانه مقایسه و خرید آنلاین بیمه</h1>
 
 					<nav>
-						{!haveUser ? (
+						{haveUser ? (
 							<div className={styles.user}>
 								<img src={avatar} alt={`${user.firstname} ${user.lastname}`} />
 

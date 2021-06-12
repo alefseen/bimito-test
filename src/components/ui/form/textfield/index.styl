@@ -1,0 +1,141 @@
+.wrapper
+	display: flex
+	flex-direction: column
+	min-width:200px
+	margin 0
+
+	.inputWrapper
+		height: 46px
+		max-height: 46px
+		min-width: 200px
+		display: inline-flex
+		position: relative
+		border-radius: 5px
+		fill: gray3
+		color: gray3
+
+		.labelContainer 
+			position: absolute
+			top: 0
+			right 0
+			transform: translate(0,40%)
+			margin 0 22px
+			pointer-events: none
+			transition:transform .3s,padding .3s,font-size .3s
+			font-size: 16px		
+			color gray5
+				
+		fieldset
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			border solid 2px gray8
+			border-radius 10px
+			pointer-events: none
+			transition: border-color .3s
+			
+
+			legend
+				height 0px
+				transition: max-width .3s
+				margin: 0 10px
+				white-space: nowrap;
+				font-size: 14px
+				visibility: hidden
+
+
+		&.hasValue input,input:focus
+			+ i + fieldset ,+ fieldset
+				legend
+					padding: 0 10px
+
+			+ fieldset + .labelContainer, + i + fieldset + .labelContainer
+				transform: translate(0, -50%)
+				font-size: 14px	
+
+
+		&.hasError
+			*,input:focus
+				+ fieldset +.labelContainer 
+					color darkRed
+
+				+ fieldset
+					border-color:darkRed
+					border-bottom-right-radius: 0
+			
+				
+		&:not(.hasError)
+			*,input:focus
+				*,+ i
+					+ fieldset
+						transition border-bottom-right-radius .3s linear 0.2s,border-color 0.3s
+
+		&.disabled
+			color: gray8
+
+			fieldset
+				border-color: gray10
+			.labelContainer 
+				color: gray7
+			> input
+				color: gray6
+
+		input
+			appearance: none
+			background: none
+			outline: none
+			font-family: inherit
+			font-size: 18px
+			line-height: 1.8
+			padding: 0 20px
+			border-radius: 10px
+			border: none
+			color: gray2
+			width: 100%
+			margin-top: 2px
+			direction: rtl
+
+			&.ltr
+				direction: ltr
+				text-align: right
+
+			&.alignleft
+				text-align: left
+			
+			&.alignright
+				text-align: right 
+
+			&:focus
+				border-color: transparent
+				
+				fieldset,+ fieldset
+					border-color: darken(lightGreen,20%)
+					
+					+ .labelContainer
+						color: darken(lightGreen,20%)
+
+
+	.error
+		font-size: 14px
+		border-radius: 12px
+		min-width: 150px
+		max-width 90%
+		height: 0px
+		padding: 0 20px
+		color: gray11
+		background: darkRed
+		width: fit-content
+		border-top-right-radius: 0
+		border-top-left-radius: 0
+		transition height .3s,padding 0.3s
+		transition-delay: 0
+		overflow hidden
+		box-sizing: border-box
+
+		&.hasError
+			height: 30px
+			padding: 2px 20px
+			transition-delay: .3s
+
