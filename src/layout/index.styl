@@ -61,8 +61,50 @@ body
 
 
 .layout
+	position relative
 	display flex
 	flex-direction: column
+	height 100%
+	background: linear-gradient(90deg, lightYellow 30%, gray12 30%);
+	padding-bottom 50px
 
-	>main
+	>:global(.container)
 		flex-grow 1
+		display flex
+
+		>.row
+			display flex
+			flex-grow 1
+			
+			>main
+				align-items flex-start
+				width 50%
+
+			>img
+				align-self flex-end
+				width 50%
+
+@media screen and (max-width:680px)
+	.layout
+		background: none
+		padding-bottom 50px
+
+		&:after
+			content ''
+			z-index -1
+			position absolute
+			left 0
+			right 0
+			bottom 0
+			height 100px
+			background lightYellow
+
+		>:global(.container) .row
+			flex-direction: column
+			>img
+				width 70%
+				justify-content flex-end
+
+			>main
+				flex-grow 1
+				width 100%

@@ -9,10 +9,7 @@ const Home: FC = () => {
 				<title>Home page </title>
 			</Helmet>
 			<div className={styles.info}>
-				<h1>Rasayesh Front-End Boilerplate</h1>
-				<p>
-					Created with <i className='icon heart' /> and <a href='https://reactjs.com'>React</a>
-				</p>
+				<h1>Bimito</h1>
 			</div>
 		</main>
 	);
