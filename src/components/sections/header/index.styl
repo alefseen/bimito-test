@@ -1,14 +1,37 @@
 .headerWrapper
     .header
-        display flex
+        display grid
         align-items center
-        justify-content space-between
-        padding-top 20px
-        padding-bottom 20px
+        margin 30px 0
+        grid-template-columns: 1fr auto 1fr auto 1fr
         
-        nav 
-            p
-                position relative
+        nav
+            grid-column: 5
+            display flex
+            justify-content flex-end
+
+            .user
+                display flex
+                align-items center
+
+                >span
+                    margin-right 10px
+
+        h1
+            grid-column: 3
+            font-size: 1em
+            text-align center
 
         img
+            grid-column: 1
             height 30px
+
+@media screen and (max-width:680px)
+    .headerWrapper
+        .header
+            margin 20px 0
+            display flex
+            justify-content space-between
+
+            h1
+                display none

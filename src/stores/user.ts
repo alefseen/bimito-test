@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { create, persist } from 'mobx-persist';
 
 class UserStore {
-	@persist('object') @observable user = {};
+	@persist('object') @observable user: Record<string, any> = {};
 
 	@persist @observable haveUser = false;
 
