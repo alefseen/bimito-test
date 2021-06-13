@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import { FC } from 'react';
 import styles from './index.styl';
 
@@ -9,10 +10,11 @@ const Button: FC<any> = ({
 	icon,
 	iconPosition = 'right',
 	disabled = false,
+	type = 'button',
 }) => {
 	return (
 		<button
-			type='button'
+			type={type}
 			className={`${styles.button}  ${className || ''} ${disabled && styles.disabled} ${
 				styles[variant]
 			}`}

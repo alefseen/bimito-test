@@ -1,0 +1,29 @@
+.page
+	display flex
+	flex-direction: column
+
+	>form
+		display flex
+		flex-direction: column
+		margin-top 30px
+
+		.grid
+			display grid
+			grid-template-columns: repeat(2,1fr)
+			grid-gap: 20px
+
+			>*
+				grid-column: 1/3
+
+			>.half
+				grid-column: unset
+
+		>button
+			margin-top 30px
+			align-self: flex-end
+
+@media screen and (max-width 480px)
+	.page >form .grid
+		grid-template-columns: 1fr
+		>*
+			grid-column: unset

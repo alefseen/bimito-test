@@ -2,6 +2,7 @@ import { ComponentType } from 'react';
 
 import Home from 'pages/home';
 import NotFound from 'pages/404';
+import Signup from 'pages/signup';
 
 export type RouteLayoutType = {
 	name: string;
@@ -21,7 +22,7 @@ class Route {
 
 	layout: RouteLayoutType;
 
-	constructor(path: string, exact = true, component: ComponentType, privateRoute = false) {
+	constructor(path: string, exact = true, component: ComponentType, privateRoute?: boolean) {
 		this.path = path;
 		this.exact = exact;
 		this.component = component;
@@ -29,4 +30,8 @@ class Route {
 	}
 }
 
-export default [new Route('/', true, Home), new Route('', false, NotFound, false)];
+export default [
+	new Route('/', true, Home, true),
+	new Route('/signup', true, Signup, false),
+	new Route('', false, NotFound),
+];
