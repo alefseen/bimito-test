@@ -4,7 +4,7 @@
 
 	.formsContainer
 		position relative
-		height 500px
+		height 300px
 		margin-top 30px
 
 		>section
@@ -45,9 +45,13 @@
 					grid-template-columns: repeat(2,1fr)
 					grid-gap: 20px
 
+					@media screen and (max-width 620px)
+						grid-template-columns: auto
+
 			.actions
 				display grid
 				grid-template-columns: auto 1fr auto
+
 
 				.disabled
 					pointer-events: none
@@ -66,3 +70,11 @@
 					height 10px
 
 				
+				@media screen and (max-width: 480px)
+					grid-template-columns: auto
+					grid-gap: 20px
+
+					.prev,.next
+						grid-column: unset
+						display flex
+						flex-direction: column
