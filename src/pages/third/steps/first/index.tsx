@@ -48,6 +48,7 @@ const FirstStep: FC<any> = ({
 						options={options}
 						value={carModel}
 						onChange={(v) => setCarModel(v)}
+						disabled={!carType}
 					/>
 				</div>
 			</div>
@@ -63,11 +64,15 @@ const FirstStep: FC<any> = ({
 					</Button>
 				</Link>
 
-				<Link to={next} className={styles.next}>
+				<Link
+					to={next}
+					className={`${styles.next} ${!carType || !carModel ? styles.disabled : ''}`}
+				>
 					<Button
 						variant='outlined'
 						iconPosition='left'
 						icon={<img src={arrow} className={styles.icon} alt='' />}
+						disabled={!carType || !carModel}
 					>
 						مرحله بعد
 					</Button>

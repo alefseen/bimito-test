@@ -20,13 +20,16 @@
 	min-width: unset 
 	padding: 0 40px
 
+	&.disabled
+		pointer-events: none
+
 	&.contained
 		background: lightGreen
 		color: gray12
 		fill gray12
 
 		&.disabled
-			background gray5
+			background gray7
 
 		&:hover,&:focus
 			background: darken(lightGreen, 8%)
@@ -37,10 +40,11 @@
 		color lightGreen
 
 		&.disabled
-			border: 1px solid gray5
+			border: 1px solid gray7
 			background: none;
-			fill:gray5
-			color gray5
+			fill:gray7
+			color gray7
+			filter: grayscale(1)
 
 		&:hover,&:focus
 			border-color: darken(lightGreen, 8%)

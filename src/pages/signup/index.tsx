@@ -61,7 +61,12 @@ const Signup: FC = () => {
 		setErrors(newErrors);
 
 		if (Object.keys(newErrors).length === 0) {
-			userStore.setUser({ firstname: firstname.trim(), lastname: lastname.trim() });
+			userStore.setUser({
+				firstname: firstname.trim(),
+				lastname: lastname.trim(),
+				password,
+				phone,
+			});
 			history.push('/');
 		}
 	};

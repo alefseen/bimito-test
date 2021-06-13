@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import usePersistedState from 'components/hooks/persisted_state';
+import { FC } from 'react';
 import Helmet from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 import styles from './index.styl';
@@ -7,11 +8,15 @@ import SecondStep from './steps/second';
 import ThirdStep from './steps/third';
 
 const Third: FC = () => {
-	const [carType, setCarType] = useState('');
-	const [carModel, setCarModel] = useState('');
-	const [prevCompony, setPrevCompony] = useState('');
-	const [thirdDiscount, setThirdDiscount] = useState('');
-	const [driverDiscount, setDriverDiscount] = useState('');
+	const [carType, setCarType] = usePersistedState('carType', undefined, 'number');
+	const [carModel, setCarModel] = usePersistedState('carModel', undefined, 'number');
+	const [prevCompony, setPrevCompony] = usePersistedState('prevCompony', undefined, 'number');
+	const [thirdDiscount, setThirdDiscount] = usePersistedState('thirdDiscount', undefined, 'number');
+	const [driverDiscount, setDriverDiscount] = usePersistedState(
+		'driverDiscount',
+		undefined,
+		'number'
+	);
 	const { pathname } = useLocation();
 
 	const handleDone = () => {

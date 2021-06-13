@@ -47,11 +47,12 @@ const SecondStep: FC<any> = ({ prevCompony, setPrevCompony, className = '', next
 					</Button>
 				</Link>
 
-				<Link to={next} className={styles.next}>
+				<Link to={next} className={`${styles.next} ${!prevCompony ? styles.disabled : ''}`}>
 					<Button
 						variant='outlined'
 						iconPosition='left'
 						icon={<img src={arrow} className={styles.icon} alt='' />}
+						disabled={!prevCompony}
 					>
 						مرحله بعد
 					</Button>

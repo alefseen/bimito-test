@@ -49,7 +49,12 @@ const ThirdStep: FC<any> = ({
 			</div>
 
 			<div className={styles.actions}>
-				<Button className={styles.next} variant='contained' onClick={done}>
+				<Button
+					className={styles.next}
+					disabled={!thirdDiscount || !driverDiscount}
+					variant='contained'
+					onClick={done}
+				>
 					استعلام قیمت
 				</Button>
 			</div>
