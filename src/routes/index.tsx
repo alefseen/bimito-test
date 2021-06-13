@@ -3,6 +3,7 @@ import { ComponentType } from 'react';
 import Home from 'pages/home';
 import NotFound from 'pages/404';
 import Signup from 'pages/signup';
+import Third from 'pages/third';
 
 export type RouteLayoutType = {
 	name: string;
@@ -32,6 +33,7 @@ class Route {
 
 export default [
 	new Route('/', true, Home, true),
+	new Route('/third', false, Third, true),
 	new Route('/signup', true, Signup, false),
 	new Route('', false, NotFound),
 ];

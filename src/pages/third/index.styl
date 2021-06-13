@@ -1,0 +1,65 @@
+.page
+	display flex
+	flex-direction: column
+
+	.formsContainer
+		position relative
+		height 500px
+		margin-top 30px
+
+		>section
+			display grid
+			grid-template-columns: auto
+			grid-gap: 30px
+			width 100%
+			position absolute
+			top 0
+			transition: .6s
+			opacity 0
+			pointer-events: none
+			filter blur(5px)
+
+			&.active
+				opacity: 1
+				pointer-events: all
+				transform:none
+				filter none
+
+			&.prev
+				transform translateX(50%)
+
+			&.next
+				transform translateX(-50%)
+
+			>p
+				color gray6
+				font-variation-settings: "wght" 500
+
+			.fields
+				display grid
+				grid-template-columns: auto
+				grid-gap: 20px
+
+				.row
+					display grid
+					grid-template-columns: repeat(2,1fr)
+					grid-gap: 20px
+
+			.actions
+				display grid
+				grid-template-columns: auto 1fr auto
+
+				.next
+					grid-column: 3
+
+				.prev
+					grid-column: 1
+
+					.icon
+						transform: rotate(180deg)
+						transform-origin: center
+
+				.icon
+					height 10px
+
+				
