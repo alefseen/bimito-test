@@ -11,17 +11,14 @@ const ThirdStep: FC<any> = ({
 	setDriverDiscount,
 	className = '',
 	done,
+	discounts,
+	setDiscounts,
 }) => {
-	const options = [
-		{ name: 'ali', value: 1 },
-		{ name: 'hassan', value: 2 },
-		{ name: 'hossein', value: 3 },
-	];
 	useEffect(() => {
 		axios
 			.get('/core/data/car-third-discount')
 			.then((res) => {
-				console.log(res);
+				setDiscounts(res.data.result);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -35,14 +32,14 @@ const ThirdStep: FC<any> = ({
 			<div className={styles.fields}>
 				<Select
 					label='درصد تخفیف ثالث'
-					options={options}
+					options={discounts?.map(({ id, title }) => ({ name: title, value: id })) || []}
 					value={thirdDiscount}
 					onChange={(v) => setThirdDiscount(v)}
 				/>
 
 				<Select
 					label='درصد تخفیف حوادث راننده'
-					options={options}
+					options={discounts?.map(({ id, title }) => ({ name: title, value: id })) || []}
 					value={driverDiscount}
 					onChange={(v) => setDriverDiscount(v)}
 				/>

@@ -12,7 +12,7 @@ import ThirdStep from './steps/third';
 const Third: FC = () => {
 	const [carType, setCarType] = usePersistedState('carType', undefined, 'number');
 	const [carModel, setCarModel] = usePersistedState('carModel', undefined, 'number');
-	const [prevCompony, setPrevCompony] = usePersistedState('prevCompony', undefined, 'number');
+	const [prevCompany, setPrevCompany] = usePersistedState('prevCompany', undefined, 'number');
 	const [thirdDiscount, setThirdDiscount] = usePersistedState('thirdDiscount', undefined, 'number');
 	const [driverDiscount, setDriverDiscount] = usePersistedState(
 		'driverDiscount',
@@ -22,6 +22,10 @@ const Third: FC = () => {
 	const [showModal, setShowModal] = useState(false);
 	const { pathname } = useLocation();
 
+	const [carTypes, setCarTypes] = useState([]);
+	const [companies, setCompanies] = useState([]);
+	const [discounts, setDiscounts] = useState([]);
+
 	const handleDone = () => {
 		setShowModal(true);
 	};
@@ -30,12 +34,28 @@ const Third: FC = () => {
 		{
 			path: '/third',
 			Component: FirstStep,
-			props: { carType, setCarType, carModel, setCarModel, next: '/third/1', prev: '/' },
+			props: {
+				carType,
+				setCarType,
+				carModel,
+				setCarModel,
+				next: '/third/1',
+				prev: '/',
+				carTypes,
+				setCarTypes,
+			},
 		},
 		{
 			path: '/third/1',
 			Component: SecondStep,
-			props: { prevCompony, setPrevCompony, next: '/third/2', prev: '/third' },
+			props: {
+				prevCompany,
+				setPrevCompany,
+				next: '/third/2',
+				prev: '/third',
+				companies,
+				setCompanies,
+			},
 		},
 		{
 			path: '/third/2',
@@ -46,6 +66,8 @@ const Third: FC = () => {
 				driverDiscount,
 				setDriverDiscount,
 				done: handleDone,
+				discounts,
+				setDiscounts,
 			},
 		},
 	];
@@ -53,7 +75,7 @@ const Third: FC = () => {
 	const state = steps.findIndex(({ path }) => pathname === path);
 
 	if (state === 1 && (!carType || !carModel)) return <Redirect to='/third' />;
-	if (state === 2 && !prevCompony) return <Redirect to='/third/1' />;
+	if (state === 2 && !prevCompany) return <Redirect to='/third/1' />;
 
 	const { phone, firstname, lastname, password } = userStore.user;
 
@@ -99,27 +121,33 @@ const Third: FC = () => {
 
 					<li>
 						<span>نوع خودرو</span>
-						<b>{carType}</b>
+						<b>{carTypes?.find(({ carTypeID }) => carTypeID === carType)?.carType}</b>
 					</li>
 
 					<li>
 						<span>مدل خودرو</span>
-						<b>{carModel}</b>
+						<b>
+							{
+								carTypes
+									?.find(({ carTypeID }) => carTypeID === carType)
+									?.brand?.find(({ id }) => id === carModel)?.name
+							}
+						</b>
 					</li>
 
 					<li>
 						<span>شرکت بیمه‌گر قبلی</span>
-						<b>{prevCompony}</b>
+						<b>{companies?.find(({ id }) => id === prevCompany)?.company}</b>
 					</li>
 
 					<li>
 						<span>درصد تخفیف ثالث</span>
-						<b>{thirdDiscount}</b>
+						<b>{discounts?.find(({ id }) => thirdDiscount === id)?.title}</b>
 					</li>
 
 					<li>
 						<span>درصد تخفیف حوادث راننده</span>
-						<b>{driverDiscount}</b>
+						<b>{discounts?.find(({ id }) => driverDiscount === id)?.title}</b>
 					</li>
 				</ul>
 			</Modal>

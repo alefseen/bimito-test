@@ -12,19 +12,16 @@ const FirstStep: FC<any> = ({
 	carModel,
 	setCarModel,
 	className = '',
+	carTypes,
+	setCarTypes,
 	next,
 	prev,
 }) => {
-	const options = [
-		{ name: 'ali', value: 1 },
-		{ name: 'hassan', value: 2 },
-		{ name: 'hossein', value: 3 },
-	];
 	useEffect(() => {
 		axios
-			.get('/core/data/car-third-discount')
+			.get('/core/data/third-car-types')
 			.then((res) => {
-				console.log(res);
+				setCarTypes(res?.data.result);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -39,13 +36,22 @@ const FirstStep: FC<any> = ({
 				<div className={styles.row}>
 					<Select
 						label='نوع خودرو'
-						options={options}
+						options={
+							carTypes?.map(({ carType: mapCarType, carTypeID }) => ({
+								name: mapCarType,
+								value: carTypeID,
+							})) || []
+						}
 						value={carType}
 						onChange={(v) => setCarType(v)}
 					/>
 					<Select
 						label='مدل خودرو'
-						options={options}
+						options={
+							carTypes
+								?.find(({ carTypeID }) => carType === carTypeID)
+								?.brand.map(({ name, id }) => ({ name, value: id })) || []
+						}
 						value={carModel}
 						onChange={(v) => setCarModel(v)}
 						disabled={!carType}

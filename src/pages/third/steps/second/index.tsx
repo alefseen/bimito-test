@@ -6,17 +6,20 @@ import arrow from 'assets/icons/arrow.svg';
 import { Link } from 'react-router-dom';
 import styles from '../../index.styl';
 
-const SecondStep: FC<any> = ({ prevCompony, setPrevCompony, className = '', next, prev }) => {
-	const options = [
-		{ name: 'ali', value: 1 },
-		{ name: 'hassan', value: 2 },
-		{ name: 'hossein', value: 3 },
-	];
+const SecondStep: FC<any> = ({
+	prevCompany,
+	setPrevCompany,
+	className = '',
+	next,
+	prev,
+	companies,
+	setCompanies,
+}) => {
 	useEffect(() => {
 		axios
-			.get('/core/data/car-third-discount')
+			.get('/core/data/companies')
 			.then((res) => {
-				console.log(res);
+				setCompanies(res.data.result);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -30,9 +33,9 @@ const SecondStep: FC<any> = ({ prevCompony, setPrevCompony, className = '', next
 			<div className={styles.fields}>
 				<Select
 					label='شرکت بیمه‌گر قبلی'
-					options={options}
-					value={prevCompony}
-					onChange={(v) => setPrevCompony(v)}
+					options={companies?.map(({ id, company }) => ({ name: company, value: id })) || []}
+					value={prevCompany}
+					onChange={(v) => setPrevCompany(v)}
 				/>
 			</div>
 
@@ -47,12 +50,12 @@ const SecondStep: FC<any> = ({ prevCompony, setPrevCompony, className = '', next
 					</Button>
 				</Link>
 
-				<Link to={next} className={`${styles.next} ${!prevCompony ? styles.disabled : ''}`}>
+				<Link to={next} className={`${styles.next} ${!prevCompany ? styles.disabled : ''}`}>
 					<Button
 						variant='outlined'
 						iconPosition='left'
 						icon={<img src={arrow} className={styles.icon} alt='' />}
-						disabled={!prevCompony}
+						disabled={!prevCompany}
 					>
 						مرحله بعد
 					</Button>
