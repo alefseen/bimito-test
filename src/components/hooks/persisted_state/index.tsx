@@ -30,15 +30,19 @@ const loadState = (key, type) => {
 	return newValue;
 };
 
-const usePersistedState = (key, defaultValue, type = 'string', visiblaty = false) => {
+const usePersistedState = (key, defaultValue, type = 'string') => {
 	const [value, setValue] = useState(defaultValue);
-	const [visible, setVisible] = useState(visiblaty);
+	const [visible, setVisible] = useState(false);
 
 	useLayoutEffect(() => {
 		const newValue = loadState(key, type);
 		if ([undefined, null].includes(newValue)) {
 			setValue(defaultValue);
-			localStorage.setItem(key, defaultValue);
+			if ([undefined, null].includes(defaultValue)) {
+				localStorage.removeItem(key);
+			} else {
+				localStorage.setItem(key, defaultValue);
+			}
 		} else {
 			setValue(newValue);
 		}
@@ -55,7 +59,7 @@ const usePersistedState = (key, defaultValue, type = 'string', visiblaty = false
 		}
 	}, [value]);
 
-	return [visible ? value : '', setValue];
+	return [visible ? value : loadState(key, type), setValue];
 };
 
 export default usePersistedState;

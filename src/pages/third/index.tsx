@@ -1,7 +1,9 @@
 import usePersistedState from 'components/hooks/persisted_state';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Helmet from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
+import Modal from 'components/ui/modal';
+import userStore from 'stores/user';
 import styles from './index.styl';
 import FirstStep from './steps/first';
 import SecondStep from './steps/second';
@@ -17,10 +19,11 @@ const Third: FC = () => {
 		undefined,
 		'number'
 	);
+	const [showModal, setShowModal] = useState(false);
 	const { pathname } = useLocation();
 
 	const handleDone = () => {
-		console.log('done');
+		setShowModal(true);
 	};
 
 	const steps = [
@@ -49,6 +52,11 @@ const Third: FC = () => {
 
 	const state = steps.findIndex(({ path }) => pathname === path);
 
+	if (state === 1 && (!carType || !carModel)) return <Redirect to='/third' />;
+	if (state === 2 && !prevCompony) return <Redirect to='/third/1' />;
+
+	const { phone, firstname, lastname, password } = userStore.user;
+
 	return (
 		<main className={styles.page}>
 			<Helmet>
@@ -67,6 +75,54 @@ const Third: FC = () => {
 					/>
 				))}
 			</div>
+
+			<Modal className={styles.modal} modalOpen={showModal} setModalOpen={setShowModal}>
+				<ul>
+					<li>
+						<span>نام و نام خانوادگی</span>
+						<b>
+							{firstname} {lastname}
+						</b>
+					</li>
+
+					<li>
+						<span>شماره موبایل</span>
+						<b>{phone}</b>
+					</li>
+
+					<li>
+						<span>رمز عبور</span>
+						<b>{password}</b>
+					</li>
+
+					<li className={styles.seperator} />
+
+					<li>
+						<span>نوع خودرو</span>
+						<b>{carType}</b>
+					</li>
+
+					<li>
+						<span>مدل خودرو</span>
+						<b>{carModel}</b>
+					</li>
+
+					<li>
+						<span>شرکت بیمه‌گر قبلی</span>
+						<b>{prevCompony}</b>
+					</li>
+
+					<li>
+						<span>درصد تخفیف ثالث</span>
+						<b>{thirdDiscount}</b>
+					</li>
+
+					<li>
+						<span>درصد تخفیف حوادث راننده</span>
+						<b>{driverDiscount}</b>
+					</li>
+				</ul>
+			</Modal>
 		</main>
 	);
 };

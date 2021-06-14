@@ -1,0 +1,28 @@
+.modalContainer
+    position: fixed
+    z-index 10
+    width 100%
+    height 100%
+    top 0
+    right 0
+    opacity 0
+    background: rgba(gray1,.6)
+    transition: .3s
+    pointer-events: none
+
+    &.opened
+        opacity 1
+        pointer-events: all
+
+    .modal
+        display flex
+        position: absolute
+        top: 50%
+        right 50%
+        transform: translate(50%,-50%)
+        justify-content center
+        align-items center
+        padding 30px 50px
+        background: gray11
+        border-radius: 10px
+        flex-direction: column

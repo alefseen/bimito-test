@@ -14,10 +14,10 @@
 			width 100%
 			position absolute
 			top 0
-			transition: .6s
 			opacity 0
 			pointer-events: none
 			filter blur(5px)
+			transition: .6s
 
 			&.active
 				opacity: 1
@@ -78,3 +78,30 @@
 						grid-column: unset
 						display flex
 						flex-direction: column
+
+	.modal
+		width 420px
+		max-width: 90vw
+		box-sizing: border-box
+
+		@media screen and (max-width 460px)
+			padding 30px
+
+		ul
+			display grid
+			grid-gap 10px
+			width 100%
+
+			.seperator
+				height 1px
+				background: gray9
+				width 100%
+
+			li
+				display flex
+				justify-content space-between
+				align-items center
+
+				span
+					font-variation-settings: "wght" 300
+			
