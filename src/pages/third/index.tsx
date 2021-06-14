@@ -82,7 +82,7 @@ const Third: FC = () => {
 	return (
 		<main className={styles.page}>
 			<Helmet>
-				<title>ثبت نام</title>
+				<title>بیمه شخص ثالث</title>
 			</Helmet>
 			<h1>بیمه شخص ثالث</h1>
 
