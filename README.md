@@ -6,6 +6,8 @@ Created by Amir Soltaniyan
 
 ### npm start
 
+App runned on port 8080
+
 ## Build App:
 
 ### npm run build
