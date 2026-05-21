@@ -6,7 +6,7 @@ import { FC } from 'react';
 
 const App: FC = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/bimito-test/">
 			<Layout />
 		</BrowserRouter>
 	);

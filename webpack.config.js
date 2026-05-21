@@ -23,7 +23,7 @@ module.exports = () => {
 			filename: '[name].bundle.js',
 			chunkFilename: '[name].bundle.js',
 			pathinfo: !isProd,
-			publicPath: '/',
+			publicPath: isProd ? '/bimito-test/' : '/',
 		},
 
 		// Webpack Development Server
@@ -143,8 +143,8 @@ module.exports = () => {
 			new HtmlWebpackPlugin({
 				template: `./src/bootstrap/index.html`,
 				minify: true,
-				publicPath: '/',
-				chunks: isProd ? [] : 'all',
+				publicPath: isProd ? '/bimito-test/' : '/',
+				chunks: isProd ? 'all' : 'all',
 			}),
 
 			// Bundle css assets
